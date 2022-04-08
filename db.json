@@ -1,14 +1,19 @@
-{
-  "posts": [
-    { "id": 1, "title": "Post 1" },
-    { "id": 2, "title": "Post 2" },
-    { "id": 3, "title": "Post 3" }
-  ],
-  "comments": [
-    { "id": 1, "body": "some comment", "postId": 1 },
-    { "id": 2, "body": "some comment", "postId": 1 }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
-}
+const fs = require('fs');
+
+var Data = '{"employees": [{"id": 1,"first_name": "Sebastian","last_name": "Eschweiler","email": "sebastian@codingthesmartway.com"},{"id": 2, "first_name": "Steve","last_name": "Palmer","email": "steve@codingthesmartway.com"},{"id": 3,"first_name": "Ann","last_name": "Smith","email": "ann@codingthesmartway.com"}]}';
+
+var jsonObj = JSON.parse(Data);
+console.log(jsonObj);
+ 
+// stringify JSON Object
+var jsonContent = JSON.stringify(jsonObj);
+console.log(jsonContent);
+ 
+fs.writeFile("db.json", jsonContent, 'utf8', function (err) {
+    if (err) {
+        console.log("An error occured while writing JSON Object to File.");
+        return console.log(err);
+    }
+ 
+    console.log("JSON file has been saved.");
+});
